@@ -6,10 +6,11 @@ echo -e "\e[0;32m Install Dahdi Audio_CODEC Driver v$ver \e[0m"
 sleep 2
 cd /usr/src
 #rm -rf dahdi-linux-complete*
-#yum remove dahdi* -y
-#yum remove dahdi-tools* -y
-yum install dahdi* -y
-yum install dahdi-tools* -y
+#zypper remove -y asterisk asterisk-devel asterisk-dahdi asterisk-snmp asterisk-alsa asterisk-calendar asterisk-console asterisk-corosync asterisk-freetds asterisk-moh-base asterisk-odbc asterisk-perl asterisk-pgsql asterisk-radius asterisk-sounds-base asterisk-sounds-devel asterisk-spandsp libasteriskssl1
+zypper install -y asterisk asterisk-devel asterisk-dahdi asterisk-snmp asterisk-alsa asterisk-calendar asterisk-console asterisk-corosync asterisk-freetds asterisk-moh-base asterisk-odbc asterisk-perl asterisk-pgsql asterisk-radius asterisk-sounds-base asterisk-sounds-devel asterisk-spandsp libasteriskssl1
+#zypper remove -y dahdi-linux dahdi-linux-devel dahdi-linux-kmp-default dahdi-linux-kmp-preempt dahdi-tools
+zypper install -y dahdi-linux dahdi-linux-devel dahdi-linux-kmp-default dahdi-linux-kmp-preempt dahdi-tools
+
 if [ $vici -eq 1 ]
 then
 	wget http://download.vicidial.com/required-apps/dahdi-linux-complete-2.3.0.1+2.3.0.tar.gz
