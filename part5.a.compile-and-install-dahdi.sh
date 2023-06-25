@@ -7,7 +7,7 @@ sleep 2
 cd /usr/src
 #rm -rf dahdi-linux-complete*
 zypper remove -y asterisk-dahdi dahdi-linux dahdi-linux-devel dahdi-linux-kmp-default dahdi-linux-kmp-preempt dahdi-tools
-#zypper install -y dahdi-tools*
+zypper install -y asterisk-dahdi dahdi-linux dahdi-linux-devel dahdi-linux-kmp-default dahdi-linux-kmp-preempt dahdi-tools
 if [ $vici -eq 1 ]
 then
 	wget http://download.vicidial.com/required-apps/dahdi-linux-complete-2.3.0.1+2.3.0.tar.gz
