@@ -32,9 +32,9 @@ clear
 #################################################################################
 cd /usr/src
 
-yum -y check-update
+zypper ref
 
-yum -y install wget git
+zypper install -y wget git
 
 wget -O ./ViciBox-openSUSE-Leap-15.3.3-x86_64_Minimal-Server.zip https://github.com/ashloverscn/ViciBox-openSUSE-Leap-15.3.3-x86_64_Minimal-Server/archive/refs/heads/main.zip
 
