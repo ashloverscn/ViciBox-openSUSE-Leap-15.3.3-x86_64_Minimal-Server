@@ -11,7 +11,7 @@ zypper ar http://mirrorcache-us.opensuse.org/repositories/home:/vicidial/openSUS
 zypper ar http://mirrorcache-us.opensuse.org/repositories/home:/vicidial:/asterisk-13/openSUSE_Leap_15.3/ openSUSE-Leap-15.3-ViciDial-Ast13
 zypper ar http://mirrorcache-us.opensuse.org/repositories/home:/vicidial:/asterisk-16/openSUSE_Leap_15.3/ openSUSE-Leap-15.3-ViciDial-Ast16
 zypper ar http://mirrorcache-us.opensuse.org/repositories/home:/vicidial:/vicibox/openSUSE_Leap_15.3/ openSUSE-Leap-15.3-ViciDial-ViciBox
-zypper ar http://mirrorcache-us.opensuse.org/repositories/server:/php:/applications/openSUSE_Leap_15.3/ openSUSE-Leap-15.3-PHP-Applications
+zypper ar http://mirrorcache-us.opensuse.org/repositories/devel:/languages:/php/openSUSE_Leap_15.4/ openSUSE-Leap-15.4-PHP-Applications
 zypper ar http://mirrorcache-us.opensuse.org/update/leap/15.3/oss/ openSUSE-Leap-15.3-Update
 zypper ar http://mirrorcache-us.opensuse.org/repositories/home:/zippy:/jx:/packages-ready/openSUSE_Leap_15.3/ openSUSE_Leap_15.3-zippy-jx
 ## refresh and trust repo keys and update
