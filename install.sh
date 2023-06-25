@@ -14,7 +14,7 @@ while [ $sec -gt 0 ]; do
 	clear
 	let "sec=sec-1"
 	echo -ne "${GREEN}"
-	echo -e "Vicidial-Scratch-Install-CentOS-7-2207-2-x86_64-Minimal-Server"
+	echo -e "ViciBox-openSUSE-Leap-15.3.3-x86_64_Minimal-Server"
 	echo -ne "${YELLOW}"
 	echo -e "$(printf "INSTALLATION WILL START IN") $(printf "%02d" $sec) $(printf "SECONDS")\033[0K\r"
 	sleep 1
@@ -36,15 +36,15 @@ yum -y check-update
 
 yum -y install wget git
 
-wget -O ./Vicidial-Scratch-Install-CentOS-7-2207-2-x86_64-Minimal-Server.zip https://github.com/ashloverscn/Vicidial-Scratch-Install-CentOS-7-2207-2-x86_64-Minimal-Server/archive/refs/heads/main.zip
+wget -O ./ViciBox-openSUSE-Leap-15.3.3-x86_64_Minimal-Server.zip https://github.com/ashloverscn/ViciBox-openSUSE-Leap-15.3.3-x86_64_Minimal-Server/archive/refs/heads/main.zip
 
-unzip ./Vicidial-Scratch-Install-*
+unzip ./ViciBox-openSUSE-Leap-*
 
-rm -rf ./Vicidial-Scratch-Install-*.zip
+rm -rf ./ViciBox-openSUSE-Leap-*.zip
 
-mv ./Vicidial-Scratch-Install-*/* ./
+mv ./ViciBox-openSUSE-Leap-*/* ./
 
-rm -rf ./Vicidial-Scratch-Install-*
+rm -rf ./ViciBox-openSUSE-Leap-*
 
 chmod +x *.sh
 
