@@ -7,7 +7,7 @@ sleep 2
 cd /usr/src
 #rm -rf dahdi-linux-complete*
 #zypper remove -y asterisk asterisk-devel asterisk-dahdi asterisk-alsa asterisk-calendar asterisk-console asterisk-corosync asterisk-freetds asterisk-moh-base asterisk-odbc asterisk-perl asterisk-pgsql asterisk-radius asterisk-sounds-base asterisk-sounds-devel asterisk-spandsp libasteriskssl1
-zypper install -y asterisk asterisk-devel asterisk-dahdi asterisk-snmp asterisk-alsa asterisk-calendar asterisk-console asterisk-corosync asterisk-freetds asterisk-moh-base asterisk-odbc asterisk-perl asterisk-pgsql asterisk-radius asterisk-sounds-base asterisk-sounds-devel asterisk-spandsp libasteriskssl1
+zypper install -y asterisk asterisk-devel asterisk-dahdi asterisk-alsa asterisk-calendar asterisk-console asterisk-corosync asterisk-freetds asterisk-moh-base asterisk-odbc asterisk-perl asterisk-pgsql asterisk-radius asterisk-sounds-base asterisk-sounds-devel asterisk-spandsp libasteriskssl1
 #zypper remove -y dahdi-linux dahdi-linux-devel dahdi-linux-kmp-default dahdi-linux-kmp-preempt dahdi-tools
 zypper install -y dahdi-linux dahdi-linux-devel dahdi-linux-kmp-default dahdi-linux-kmp-preempt dahdi-tools
 
