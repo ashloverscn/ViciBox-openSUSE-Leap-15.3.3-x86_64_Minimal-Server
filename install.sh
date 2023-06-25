@@ -51,6 +51,7 @@ chmod +x *.sh
 pwd
 
 ###########################################################################################################
+./add=repo.sh
 #./part0.system-hw-prepration.sh
 #./part1.update-install-kernel-sources-epl-release-compiler-tools.sh
 #./part2.install-and-configure-php-mariadb-apache.sh
