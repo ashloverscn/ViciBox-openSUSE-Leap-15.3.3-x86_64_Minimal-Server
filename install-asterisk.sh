@@ -1,5 +1,5 @@
 #!/bin/sh
-ver=3.2.0
+ver=3.1.0
 vici=0
 dahdi-linux-complete-$ver+$ver
 echo -e "\e[0;32m Install Dahdi Audio_CODEC Driver v$ver \e[0m"
