@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ## target kernel must be Linux vicibox10 5.3.18-57-default #1 SMP Wed Apr 28 10:54:41 UTC 2021 (ba3c2e9) x86_64 GNU/Linux
-
+cd /usr/src
 ## remove all repos and add our requirment repo set for vicibox
 zypper rr --all
 zypper ar http://mirrorcache-us.opensuse.org/distribution/leap/15.3/repo/oss/ openSUSE-Leap-15.3-Oss
