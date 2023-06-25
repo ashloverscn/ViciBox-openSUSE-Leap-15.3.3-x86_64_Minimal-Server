@@ -6,10 +6,8 @@ echo -e "\e[0;32m Install Asterisk v$ver$oem \e[0m"
 sleep 2
 cd /usr/src
 #rm -rf asterisk*
-#yum remove asterisk -y
-#yum remove asterisk-* -y
-yum install asterisk -y
-yum install asterisk-* -y
+zypper remove -y asterisk asterisk-devel asterisk-dahdi asterisk-alsa asterisk-calendar asterisk-console asterisk-corosync asterisk-freetds asterisk-moh-base asterisk-odbc asterisk-perl asterisk-pgsql asterisk-radius asterisk-snmp asterisk-sounds-base asterisk-sounds-devel asterisk-spandsp libasteriskssl1
+zypper install -y
 wget -O asterisk-$ver$oem.tar.gz http://download.vicidial.com/$subdr/asterisk-$ver$oem.tar.gz
 #wget http://download.vicidial.com/beta-apps/asterisk-16.17.0-vici.tar.gz
 tar -xvzf asterisk-$ver$oem.tar.gz
