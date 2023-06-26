@@ -36,6 +36,7 @@ cpanm User::Identity --force
 cpanm YAML MD5 Digest::MD5 Digest::SHA1 Curses Getopt::Long Net::Domain Term::ReadKey Term::ANSIColor HTML::FormatText MIME::Decoder Mail::POP3Client Mail::Message Crypt::Eksblowfish::Bcrypt
 
 #http://swanand18.blogspot.com/2022/12/how-to-scratch-install-instructions-for.html
+#http://swanand18.blogspot.com/2021/11/how-to-vicibox-9-scratch-install.html
 
 if [ $vici -eq 1 ]
 then
