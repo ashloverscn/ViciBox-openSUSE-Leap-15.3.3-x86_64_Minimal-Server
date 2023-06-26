@@ -6,6 +6,7 @@ echo -e "\e[0;32m Install Dahdi Audio_CODEC Driver v$ver \e[0m"
 sleep 2
 cd /usr/src
 #rm -rf dahdi-linux-complete*
+zypper install -y make patch gcc gcc-c++ subversion php php-devel php-gd gd-devel php-mbstring php-mcrypt php-imap php-ldap php-mysql php-odbc php-pear php-xml php-xmlrpc curl curl-devel perl-libwww-perl ImageMagick libxml2 libxml2-devel httpd libpcap libpcap-devel libnet ncurses ncurses-devel screen mysql-devel ntp mutt wget nano unzip sipsak sox libuuid-devel
 zypper remove -y asterisk-dahdi dahdi-linux dahdi-linux-devel dahdi-linux-kmp-default dahdi-linux-kmp-preempt dahdi-tools
 zypper install -y dahdi-tools
 if [ $vici -eq 1 ]
