@@ -16,16 +16,14 @@ zypper ar http://mirrorcache-us.opensuse.org/repositories/home:/zippy:/jx:/packa
 ## refresh and trust repo keys and update
 zypper ref
 zypper up -y
-
 #zypper -y remove kernel-*
+## install kernel requirments for compiling
+zypper -y install kernel-default kernel-devel kernel-source kernel-macros
+## installing compiler and dependency for build
+zypper -y install bc bison bison-lang flex glibc-devel libelf-devel libxcrypt-devel linux-glibc-devel zlib-devel libelf-devel libfl-devel libfl2 libopenssl-1_1-devel libopenssl-devel m4 
+## refresh update and reboot
+zypper ref
+zypper up -y
+#reboot
 
-#zypper -y install kernel-default kernel-devel kernel-source kernel-macros
-
-#zypper -y install bc bison bison-lang flex glibc-devel libelf-devel libxcrypt-devel linux-glibc-devel zlib-devel libelf-devel libfl-devel libfl2 libopenssl-1_1-devel libopenssl-devel m4 
-
-#rpm -i http://download.opensuse.org/distribution/leap/15.3/repo/oss/x86_64/kernel-default-devel-5.3.18-57.3.x86_64.rpm
-
-#rpm -i   http://download.opensuse.org/distribution/leap/15.3/repo/oss/noarch/kernel-devel-5.3.18-57.3.noarch.rpm
-
-#zypper repos -u
 
