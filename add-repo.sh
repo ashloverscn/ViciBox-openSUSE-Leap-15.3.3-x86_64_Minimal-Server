@@ -14,7 +14,7 @@ zypper ar http://mirrorcache-us.opensuse.org/repositories/devel:/languages:/php/
 zypper ar http://mirrorcache-us.opensuse.org/update/leap/15.3/oss/ openSUSE-Leap-15.3-Update
 zypper ar http://mirrorcache-us.opensuse.org/repositories/home:/zippy:/jx:/packages-ready/openSUSE_Leap_15.3/ openSUSE_Leap_15.3-zippy-jx
 ## refresh and trust repo keys and update
-zypper ref
+zypper --gpg-auto-import-keys ref
 zypper up -y
 zypper install -y -t pattern devel_basis
 #zypper remove -y kernel-*
