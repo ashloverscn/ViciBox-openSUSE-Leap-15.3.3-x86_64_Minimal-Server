@@ -24,7 +24,7 @@ zypper ar http://mirrorcache-us.opensuse.org/repositories/home:/zippy:/jx:/packa
 ## refresh and trust repo keys and update
 zypper --gpg-auto-import-keys ref
 zypper up -y
-zypper install -y -t pattern devel_basis
+#zypper install -y -t pattern devel_basis
 #zypper remove -y kernel-*
 ## install kernel requirments for compiling
 zypper install -y kernel-default kernel-devel kernel-source kernel-macros
