@@ -5,7 +5,9 @@ cd /usr/src
 zypper rr --all
 
 zypper ar http://mirrorcache-us.opensuse.org/distribution/leap/$releasever/repo/oss/ openSUSE-Leap-15.3-Oss
+zypper ar http://mirrorcache-us.opensuse.org/distribution/leap/$releasever/repo/non-oss/ openSUSE-Leap-15.3-Non-Oss
 zypper ar http://mirrorcache-us.opensuse.org/update/leap/$releasever/oss/ openSUSE-Leap-15.3-Update
+
 #zypper ar http://mirrorcache-us.opensuse.org/repositories/devel:/languages:/perl/openSUSE_Leap_15.3/ openSUSE-Leap-15.3-PERL
 zypper ar http://mirrorcache-us.opensuse.org/repositories/devel:/languages:/perl/15.4/ openSUSE-Leap-15.4-PERL
 zypper ar http://mirrorcache-us.opensuse.org/repositories/home:/vicidial/openSUSE_Leap_15.3/ openSUSE-Leap-15.3-ViciDial
