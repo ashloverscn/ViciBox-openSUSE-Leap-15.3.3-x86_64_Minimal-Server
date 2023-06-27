@@ -3,13 +3,15 @@
 cd /usr/src
 ## remove all repos and add our requirment repo set for vicibox
 zypper rr --all
+## set openSUSE-Leap release version of os  
+releasever=15.3
 ## important update and dirtribution repo
-zypper ar http://mirrorcache-us.opensuse.org/update/leap/15.3/backports/ openSUSE-Leap-15.3-Backports-Update
-zypper ar http://mirrorcache-us.opensuse.org/update/leap/15.3/sle/ openSUSE-Leap-15.3-SLE-15-Update
-zypper ar http://mirrorcache-us.opensuse.org/update/leap/15.3/oss/ openSUSE-Leap-15.3-Oss-Update
-zypper ar http://mirrorcache-us.opensuse.org/update/leap/15.3/non-oss/ openSUSE-Leap-15.3-Non-Oss-Update
-zypper ar http://mirrorcache-us.opensuse.org/distribution/leap/15.3/repo/oss/ openSUSE-Leap-15.3-Oss
-zypper ar http://mirrorcache-us.opensuse.org/distribution/leap/15.3/repo/non-oss/ openSUSE-Leap-15.3-Non-Oss
+zypper ar http://mirrorcache-us.opensuse.org/update/leap/$releasever/backports/ openSUSE-Leap-15.3-Backports-Update
+zypper ar http://mirrorcache-us.opensuse.org/update/leap/$releasever/sle/ openSUSE-Leap-15.3-SLE-15-Update
+zypper ar http://mirrorcache-us.opensuse.org/update/leap/$releasever/oss/ openSUSE-Leap-15.3-Oss-Update
+zypper ar http://mirrorcache-us.opensuse.org/update/leap/$releasever/non-oss/ openSUSE-Leap-15.3-Non-Oss-Update
+zypper ar http://mirrorcache-us.opensuse.org/distribution/leap/$releasever/repo/oss/ openSUSE-Leap-15.3-Oss
+zypper ar http://mirrorcache-us.opensuse.org/distribution/leap/$releasever/repo/non-oss/ openSUSE-Leap-15.3-Non-Oss
 ## vicibox vicidial and support repo
 #zypper ar http://mirrorcache-us.opensuse.org/repositories/devel:/languages:/perl/openSUSE_Leap_15.3/ openSUSE-Leap-15.3-PERL
 zypper ar http://mirrorcache-us.opensuse.org/repositories/devel:/languages:/perl/15.4/ openSUSE-Leap-15.4-PERL
