@@ -4,7 +4,8 @@ cd /usr/src
 ## remove all repos and add our requirment repo set for vicibox
 zypper rr --all
 ## set openSUSE-Leap release version of os  
-releasever=15.3
+#releasever=15.3
+releasever=$(grep -oP '(?<=^VERSION_ID=).+' /etc/os-release | tr -d '"')
 ## important update and dirtribution repo
 zypper ar http://mirrorcache-us.opensuse.org/update/leap/$releasever/sle/ openSUSE-Leap-15.3-SLE-15-Update
 zypper ar http://mirrorcache-us.opensuse.org/update/leap/$releasever/backports/ openSUSE-Leap-15.3-Backports-Update
