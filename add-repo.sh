@@ -4,10 +4,11 @@ cd /usr/src
 ## remove all repos and add our requirment repo set for vicibox
 zypper rr --all
 
+zypper ar http://mirrorcache-us.opensuse.org/update/leap/$releasever/backports/ openSUSE-Leap-15.3-Backports-Update
 zypper ar http://mirrorcache-us.opensuse.org/update/leap/$releasever/sle/ openSUSE-Leap-15.3-SLE-15-Update
 zypper ar http://mirrorcache-us.opensuse.org/update/leap/$releasever/oss/ openSUSE-Leap-15.3-Oss-Update
-zypper ar http://mirrorcache-us.opensuse.org/distribution/leap/$releasever/repo/oss/ openSUSE-Leap-15.3-Oss
 zypper ar http://mirrorcache-us.opensuse.org/update/leap/$releasever/non-oss/ openSUSE-Leap-15.3-Non-Oss-Update
+zypper ar http://mirrorcache-us.opensuse.org/distribution/leap/$releasever/repo/oss/ openSUSE-Leap-15.3-Oss
 zypper ar http://mirrorcache-us.opensuse.org/distribution/leap/$releasever/repo/non-oss/ openSUSE-Leap-15.3-Non-Oss
 
 #zypper ar http://mirrorcache-us.opensuse.org/repositories/devel:/languages:/perl/openSUSE_Leap_15.3/ openSUSE-Leap-15.3-PERL
