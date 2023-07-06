@@ -1,5 +1,12 @@
 #!/bin/sh
 
+yum -y install expect
+echo -e "\e[0;32m Please Enter This Server IP ADDRESS \e[0m"
+read serveripadd
+
+echo "serveripadd is "$serveripadd
+sleep 2
+
 echo -e "\e[0;32m Clone vicidial from  SVN \e[0m"
 sleep 2
 mkdir /usr/src/astguiclient
@@ -36,11 +43,9 @@ sleep 2
 cd /usr/src/
 \cp -r /etc/astguiclient.conf /etc/astguiclient.conf.original
 echo "" > /etc/astguiclient.conf
-wget -O /usr/src/astguiclient.conf https://github.com/ashloverscn/Vicidial-Scratch-Install-CentOS-7-2207-2-x86_64-Minimal-Server/raw/main/astguiclient.conf
+#wget -O /usr/src/astguiclient.conf https://github.com/ashloverscn/Vicidial-Scratch-Install-CentOS-7-2207-2-x86_64-Minimal-Server/raw/main/astguiclient.conf
 \cp -r ./astguiclient.conf /etc/astguiclient.conf
-echo -e "\e[0;32m Please Enter This Server IP ADDRESS \e[0m"
-read serveripadd
-echo $serveripadd
+
 sed -i 's/VARserver_ip => .*/VARserver_ip => $serveripadd/' /etc/astguiclient.conf
 
 echo -e "\e[0;32m Install vicidial \e[0m"
@@ -55,4 +60,8 @@ echo -e "\e[0;32m Update server ip \e[0m"
 sleep 2
 /usr/share/astguiclient/ADMIN_update_server_ip.pl --old-server_ip=10.10.10.15
 
+echo -e "\e[0;32m Vicidial-Scratch-Install-CentOS-7-2207-2-x86_64-Minimal-Server Installation Complete! \e[0m"
+echo -e "\e[0;32m System will REBOOT in 50 Seconds \e[0m"
+sleep 50 
 
+#reboot
