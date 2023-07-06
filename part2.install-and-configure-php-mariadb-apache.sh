@@ -114,10 +114,10 @@ Please Hold while I redirect you! \
 echo -e "\e[0;32m Enable and start Httpd and MariaDb services \e[0m"
 sleep 2
 
-systemctl enable httpd.service
+systemctl enable apache2.service
 systemctl enable mariadb.service
-systemctl start httpd.service
+systemctl start apache2.service
 systemctl start mariadb.service
 systemctl status mariadb.service
-systemctl status httpd.service
+systemctl status apache2.service
 
