@@ -80,12 +80,12 @@ echo "" > /etc/my.cnf
 echo -e "\e[0;32m Configure Httpd\Apache2 httpd.conf file \e[0m"
 sleep 2
 
-cd /usr/src
+#cd /usr/src
 #\cp -r /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.original
-\cp -r /etc/apache2/httpd.conf /etc/apache2/httpd.conf.original
-echo "" > /etc/apache2/httpd.conf
+#\cp -r /etc/apache2/httpd.conf /etc/apache2/httpd.conf.original
+#echo "" > /etc/apache2/httpd.conf
 #wget -O /usr/src/httpd.conf https://github.com/ashloverscn/Vicidial-Scratch-Install-CentOS-7-2207-2-x86_64-Minimal-Server/raw/main/httpd.conf
-\cp -r ./httpd.conf /etc/apache2/httpd.conf
+#\cp -r ./httpd.conf /etc/apache2/httpd.conf
 #\cp -r /usr/src/httpd.conf /etc/httpd/conf/httpd.conf
 
 
