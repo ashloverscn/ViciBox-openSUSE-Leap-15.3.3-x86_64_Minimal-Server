@@ -103,12 +103,13 @@ echo "" > /etc/php.ini
 echo -e "\e[0;32m create index.html in webroot for redirecting to welcome.php \e[0m"
 sleep 2
 
-touch /var/www/html/index.html
-echo "" > /var/www/html/index.html
+\cp -r /srv/www/htdocs/index.html /srv/www/htdocs/index.html.original
+touch /srv/www/htdocs/index.html
+echo "" > /srv/www/htdocs/index.html
 sed -i -e '$a\
 <META HTTP-EQUIV=REFRESH CONTENT="1; URL=/vicidial/welcome.php"> \
 Please Hold while I redirect you! \
-' /var/www/html/index.html
+' /srv/www/htdocs/index.html
 
 echo -e "\e[0;32m Enable and start Httpd and MariaDb services \e[0m"
 sleep 2
