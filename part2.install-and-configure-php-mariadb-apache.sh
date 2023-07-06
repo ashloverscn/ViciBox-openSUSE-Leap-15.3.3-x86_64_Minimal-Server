@@ -120,4 +120,6 @@ systemctl start apache2.service
 systemctl start mariadb.service
 systemctl status mariadb.service
 systemctl status apache2.service
+a2enmod php7
+
 
