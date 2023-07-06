@@ -2,12 +2,7 @@
 
 echo -e "\e[0;32m Install and Configure Perl-CPAN\Perl-CPAN-Modules \e[0m"
 sleep 2
-zypper install perl-CPAN -y
-zypper install perl-YAML -y
-zypper install perl-libwww-perl -y
-zypper install perl-DBI -y
-zypper install perl-DBD-MySQL -y
-zypper install perl-GD -y
+zypper install -y perl-CPAN zypper install perl-YAML zypper install perl-libwww-perl zypper install perl-DBI zypper install perl-DBD-MySQL zypper install perl-GD
 
 cd /usr/bin/
 curl -LOk http://xrl.us/cpanm
