@@ -1,6 +1,6 @@
 #!/bin/sh
 
-yum -y install expect
+zypper install -y install expect
 echo -e "\e[0;32m Please Enter This Server IP ADDRESS \e[0m"
 read serveripadd
 
