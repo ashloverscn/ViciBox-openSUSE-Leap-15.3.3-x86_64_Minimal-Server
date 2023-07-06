@@ -111,6 +111,9 @@ sed -i -e '$a\
 Please Hold while I redirect you! \
 ' /srv/www/htdocs/index.html
 
+## allow apache2 user to run
+sudo chown wwwrun /srv/www/htdocs/ -R
+
 echo -e "\e[0;32m Enable and start Httpd and MariaDb services \e[0m"
 sleep 2
 
