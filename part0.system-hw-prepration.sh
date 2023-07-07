@@ -26,7 +26,7 @@ service network restart
 #enable verbose boot 
 sed -i 's/rhgb//g' /etc/default/grub
 sed -i 's/quiet//g' /etc/default/grub
-sed -i 's/splash=silent/splash=verbose/g' /etc/selinux/config
+sed -i 's/splash=silent/splash=verbose/g' /etc/default/grub
 grub2-mkconfig -o /boot/grub2/grub.cfg
 
 #reboot
