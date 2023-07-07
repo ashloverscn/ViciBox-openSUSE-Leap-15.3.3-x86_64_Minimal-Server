@@ -1,33 +1,9 @@
 #!/bin/sh
 
-echo -e "\e[0;32m Install RemiRepo PHP7 \e[0m"
+echo -e "\e[0;32m Install PHP7 \e[0m"
 sleep 2
-
-#yum -y remove https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-
-#yum -y remove http://rpms.remirepo.net/enterprise/remi-release-7.rpm
-
-#yum -y remove yum-utils
-
-#yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-
-#yum -y install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
-
-#yum -y install yum-utils
-
-#yum-config-manager --enable remi-php74
-
-echo -e "\e[0;32m Add MariaDB Repo \e[0m"
-sleep 2
-
-#cd /usr/src
-#\cp -r /etc/yum.repos.d/MariaDB.repo /etc/yum.repos.d/MariaDB.repo.original
-#touch /etc/yum.repos.d/MariaDB.repo
-#echo "" > /etc/yum.repos.d/MariaDB.repo
-#wget -O /usr/src/MariaDB.repo https://github.com/ashloverscn/Vicidial-Scratch-Install-CentOS-7-2207-2-x86_64-Minimal-Server/raw/main/MariaDB.repo
-#\cp -r ./MariaDB.repo /etc/yum.repos.d/MariaDB.repo
-#\cp -r /usr/src/MariaDB.repo /etc/yum.repos.d/MariaDB.repo
-
+zypper in php7 php7-cli php7-mysql apache2-mod_php7
+a2enmod php7
 
 echo -e "\e[0;32m Install Compiler\Build Tools \e[0m"
 sleep 2
