@@ -75,6 +75,8 @@ echo "" > /etc/php7/apache2/php.ini
 \cp -r ./php.ini /etc/php7/apache2/php.ini
 #\cp -r /usr/src/php.ini /etc/php.ini
 
+#In addition, ensure that in `/etc/apache2/mod_mime-defaults.conf` there is a line
+#AddType application/x-httpd-php .php
 
 echo -e "\e[0;32m create index.html in webroot for redirecting to welcome.php \e[0m"
 sleep 2
