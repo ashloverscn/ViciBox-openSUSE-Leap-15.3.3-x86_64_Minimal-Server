@@ -20,19 +20,6 @@ sleep 2
 echo -e "\e[0;32m Install and configure MariaDB\SQL \e[0m"
 sleep 2
 
-#yum -y remove sqlite-devel
-
-#yum -y remove mariadb-server mariadb MariaDB-compat
-
-#yum -y install sqlite-devel
-
-#yum -y install mariadb-server mariadb 
-
-#yum -y install sqlite-devel
-
-#yum -y install mariadb-server mariadb
-
-
 echo -e "\e[0;32m Create mysql Log files \e[0m"
 sleep 2
 
@@ -55,15 +42,6 @@ echo "" > /etc/my.cnf
 
 echo -e "\e[0;32m Configure Httpd\Apache2 httpd.conf file \e[0m"
 sleep 2
-
-#cd /usr/src
-#\cp -r /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.original
-#\cp -r /etc/apache2/httpd.conf /etc/apache2/httpd.conf.original
-#echo "" > /etc/apache2/httpd.conf
-#wget -O /usr/src/httpd.conf https://github.com/ashloverscn/Vicidial-Scratch-Install-CentOS-7-2207-2-x86_64-Minimal-Server/raw/main/httpd.conf
-#\cp -r ./httpd.conf /etc/apache2/httpd.conf
-#\cp -r /usr/src/httpd.conf /etc/httpd/conf/httpd.conf
-
 
 echo -e "\e[0;32m Configure PHP PHP.ini file \e[0m"
 sleep 2
