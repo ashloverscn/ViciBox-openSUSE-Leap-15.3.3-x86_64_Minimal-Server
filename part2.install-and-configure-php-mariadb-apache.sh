@@ -33,10 +33,11 @@ echo -e "\e[0;32m Configure mariadb mysql my.cnf file \e[0m"
 sleep 2
 
 cd /usr/src
-\cp -r /etc/my.cnf /etc/my.cnf.original
-echo "" > /etc/my.cnf
+\cp -r /etc/my.cnf.d/my.cnf /etc/my.cnf.d/my.cnf.original
+touch /etc/my.cnf.d/my.cnf
+echo "" > /etc/my.cnf.d/my.cnf
 #wget -O /usr/src/my.cnf https://raw.githubusercontent.com/ashloverscn/Vicidial-Scratch-Install-CentOS-7-2207-2-x86_64-Minimal-Server/main/my.cnf
-\cp -r ./my.cnf /etc/my.cnf
+\cp -r ./my.cnf /etc/my.cnf.d/my.cnf
 #\cp -r /usr/src/my.cnf /etc/my.cnf 
 
 
