@@ -11,6 +11,14 @@ zypper source-install -d vicibox-firewall
 
 zypper source-install -d vicibox-ssl
 
+zypper in -y vicibox-install
+
+zypper in -y vicibox-dynportal
+
+zypper in -y vicibox-firewall
+
+zypper in -y vicibox-ssl
+
 zypper in -y vicibox-*
 
 zypper ref
