@@ -20,9 +20,9 @@ zypper ref
 
 zypper up -y
 
-cat perl-rpms | xargs zypper in
+#rpm -qa --qf "%{NAME}\n" > installed-pkgs_vicibox10.0.2_stock
 
-#cat installed-rpms | xargs zypper in
+cat installed-pkgs_vicibox10.0.2_stock | xargs zypper in
 
 zypper rm apache2
 
