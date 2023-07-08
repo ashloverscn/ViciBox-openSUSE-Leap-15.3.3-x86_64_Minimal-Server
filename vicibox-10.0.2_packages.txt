@@ -30,9 +30,9 @@ rm -rf /etc/apache2
 
 zypper rm patterns-server-lamp_server
 
-zypper in patterns-server-lamp_server
-
 zypper in apache2 apache2-devel apache2-mod_cband apache2-mod_php7 apache2-prefork patterns-server-lamp_server vicibox-dynportal
+
+zypper in patterns-server-lamp_server
 
 a2enmod php7
 
