@@ -3,21 +3,7 @@
 ########################################################################################################
 zypper in -y libjansson4-2.14
 
-zypper source-install -d vicibox-install
-
-zypper source-install -d vicibox-dynportal
-
-zypper source-install -d vicibox-firewall
-
-zypper source-install -d vicibox-ssl
-
-zypper in -y vicibox-install
-
-zypper in -y vicibox-dynportal
-
-zypper in -y vicibox-firewall
-
-zypper in -y vicibox-ssl
+zypper source-install -d vicibox-*
 
 zypper in -y vicibox-*
 
@@ -34,9 +20,9 @@ zypper ref
 
 zypper up -y
 
-#rpm -qa --qf "%{NAME}\n" > installed-pkgs_vicibox10.0.2_stock
+cat perl-rpms | xargs zypper in
 
-cat installed-pkgs_vicibox10.0.2_stock | xargs zypper in
+#cat installed-rpms | xargs zypper in
 
 zypper rm apache2
 
