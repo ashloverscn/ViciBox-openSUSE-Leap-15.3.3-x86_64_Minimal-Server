@@ -1,0 +1,28 @@
+zypper in acme.sh aggregate amanda apache2-mod_cband apache2-mod_php7 asterisk asterisk-moh-base asterisk-perl asterisk-sounds-base dahdi-linux dahdi-linux-kmp-default
+dahdi-tools dump dump-rmt gd insserv-compat lame libFLAC8 libJudy1 libSDL-1_2-0 libXrandr2 libao-plugins4 libao4 libarchive13 libasteriskssl1 libgd3 libgmime-2_6-0
+libgsm1 libgthread-2_0-0 libid3tag0 libiksemel3 libilbccodec2 libjack0 libmad0 libmariadb3 libmp3lame0 libogg0 libopenr2-3 libopenssl1_0_0 libopus0 libopusfile0
+libosptk-4_13_0 libpj2 libportaudio2 libpq5 libpulse0 libresample2 libsndfile1 libsox3 libspeex1 libspeexdsp1 libsrtp1 libtonezone2_0 libtwolame0 liburiparser1
+libvorbis0 libvorbisenc2 libvorbisfile3 libwavpack1 libwebp7 libwebrtc2 libzip5 mariadb mariadb-client mariadb-errormessages openr2 perl-Alt-Crypt-RSA-BigInt
+perl-Archive-Zip perl-B-Hooks-EndOfScope perl-Class-Data-Inheritable perl-Class-Inspector perl-Class-Load perl-Class-Load-XS perl-Class-Loader
+perl-Class-Method-Modifiers perl-Class-Mix perl-Class-Singleton perl-Class-XSAccessor perl-Convert-ASCII-Armour perl-Convert-BinHex perl-Crypt-Blowfish perl-Crypt-CBC
+perl-Crypt-Curve25519 perl-Crypt-DES perl-Crypt-Eksblowfish perl-Crypt-IDEA perl-Crypt-PBKDF2 perl-Crypt-RC4 perl-CryptX perl-DBD-MariaDB perl-Data-Buffer
+perl-Data-OptList perl-Data-Peek perl-DateTime perl-DateTime-Format-Builder perl-DateTime-Format-ISO8601 perl-DateTime-Format-Strptime perl-DateTime-Locale
+perl-DateTime-TimeZone perl-Devel-Caller perl-Devel-GlobalDestruction perl-Devel-LexAlias perl-Devel-OverloadInfo perl-Devel-StackTrace perl-Digest-BubbleBabble
+perl-Digest-MD2 perl-Digest-MD5-File perl-Digest-Perl-MD5 perl-Digest-SHA3 perl-Dist-CheckConflicts perl-Email-Date-Format perl-Encode perl-Eval-Closure
+perl-Exception-Class perl-Exporter-Tiny perl-ExtUtils-PkgConfig perl-File-HomeDir perl-File-Path perl-File-Remove perl-File-ShareDir perl-File-Slurp perl-File-Temp
+perl-File-Which perl-Font-AFM perl-GD perl-HTML-Format perl-HTML-Strip perl-HTML-Tree perl-Hash-Ordered perl-IO-Pty-Easy perl-IO-String perl-IO-Tty perl-IO-stringy
+perl-Jcode perl-List-MoreUtils perl-List-MoreUtils-XS perl-MIME-Lite perl-MIME-Types perl-MIME-tools perl-MRO-Compat perl-Mail-Box perl-Mail-IMAPClient
+perl-Mail-Message perl-Mail-POP3Client perl-Mail-Sendmail perl-Mail-Transport perl-Math-BigInt-GMP perl-Math-GMP perl-Math-Int64 perl-Math-Prime-Util
+perl-Math-Prime-Util-GMP perl-Module-Implementation perl-Module-Runtime perl-Module-Runtime-Conflicts perl-Module-Signature perl-Moo perl-Moose perl-MySQL-Diff
+perl-Net-CIDR-Lite perl-Net-Daemon perl-Net-FTPSSL perl-Net-HTTPTunnel perl-Net-SFTP perl-Net-SFTP-Foreign perl-Net-SSH-Perl perl-Net-Server perl-Net-Telnet
+perl-OLE-Storage_Lite perl-Object-Realize-Later perl-Package-DeprecationManager perl-Package-Stash perl-Package-Stash-XS perl-PadWalker perl-Params-Classify
+perl-Params-Util perl-Params-Validate perl-Params-ValidationCompiler perl-Perl-Tidy perl-PerlIO-gzip perl-PerlX-Maybe perl-Proc-ProcessTable perl-RPC-XML
+perl-Ref-Util perl-Ref-Util-XS perl-Role-Tiny perl-Scalar-List-Utils perl-Sort-Versions perl-Specio perl-Spreadsheet-ParseExcel perl-Spreadsheet-Read
+perl-Spreadsheet-ReadSXC perl-Spreadsheet-WriteExcel perl-Spreadsheet-XLSX perl-String-CRC32 perl-String-ShellQuote perl-Sub-Exporter perl-Sub-Exporter-Progressive
+perl-Sub-Identify perl-Sub-Install perl-Sub-Quote perl-Sub-Uplevel perl-Switch perl-Term-ANSIColor perl-Test-Exception perl-Test-Fatal perl-Test-Fork
+perl-Test-NoWarnings perl-Test-Warnings perl-Text-CSV perl-Text-CSV_XS perl-Tie-EncryptedHash perl-Time-Local perl-Type-Tiny perl-Unicode-Map perl-User-Identity
+perl-Variable-Magic perl-WWW-Curl perl-WWW-Curl-Simple perl-XML-LibXML perl-XML-NamespaceSupport perl-XML-SAX perl-XML-SAX-Base perl-XML-XPath perl-XML-XPathEngine
+perl-XString perl-namespace-autoclean perl-namespace-clean perl-strictures php-pear-XML_RPC php7 php7-ctype php7-curl php7-dom php7-ftp php7-gd php7-gettext
+php7-iconv php7-json php7-mysql php7-opcache php7-openssl php7-pdo php7-pear php7-soap php7-sqlite php7-tokenizer php7-xmlreader php7-xmlrpc php7-xmlwriter php7-zip
+ploticus psqlODBC pwgen python3-mysqlclient samba-client sipsak socat sox sysvinit-tools ttyload unixODBC vicibox-dynportal vicibox-firewall vicibox-install
+vicibox-ssl xtables-addons xtables-addons-kmp-default xtables-geoip

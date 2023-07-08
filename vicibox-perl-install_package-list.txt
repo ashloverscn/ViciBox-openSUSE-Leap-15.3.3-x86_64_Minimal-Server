@@ -1,0 +1,13 @@
+perl-Compress-Raw-Bzip2 perl-DBD-CSV perl-IO-Compress perl-IO-Compress-Lzma perl-JSON perl-JSON-XS perl-Log-Dispatch perl-Log-Dispatch-FileRotate
+perl-Math-Base-Convert perl-PAR-Dist perl-SQL-Statement perl-Test-Deep perl-Text-Soundex perl-XML-DOM
+
+
+dejavu-fonts libdbi3 libncurses5 librrd8 perl-Archive-Tar perl-BSD-Resource perl-CPAN perl-CPAN-Checksums perl-CPAN-Meta-Requirements perl-CPAN-Perl-Releases
+perl-Capture-Tiny perl-Clone perl-Compress-Bzip2 perl-Compress-Raw-Bzip2 perl-Compress-Raw-Lzma perl-Compress-Raw-Zlib perl-Convert-ASN1 perl-Crypt-Rijndael
+perl-Crypt-SSLeay perl-Curses perl-DBD-CSV perl-DBD-Pg perl-DBD-mysql perl-Data-Compare perl-Data-Dumper perl-Date-Manip perl-Digest-SHA perl-Expect
+perl-ExtUtils-CBuilder perl-ExtUtils-ParseXS perl-File-FcntlLock perl-File-Find-Rule perl-GSSAPI perl-HTML-Template perl-IO-Compress perl-IO-Compress-Lzma
+perl-IO-Zlib perl-IPC-Run3 perl-JSON perl-JSON-XS perl-Log-Dispatch perl-Log-Dispatch-FileRotate perl-Log-Log4perl perl-Math-Base-Convert perl-Module-Build
+perl-Module-Install perl-Module-ScanDeps perl-Net-SNMP perl-NetAddr-IP perl-Number-Compare perl-PAR-Dist perl-Package-Constants perl-Parse-CPAN-Meta perl-Probe-Perl
+perl-Proc-PID-File perl-SQL-Statement perl-Set-Scalar perl-Socket6 perl-Spiffy perl-Sub-Name perl-Term-ReadLine-Gnu perl-Test-Base perl-Test-Deep perl-Test-Script
+perl-Test-Simple perl-Text-Glob perl-Text-Soundex perl-Tk perl-Types-Serialiser perl-XML-DOM perl-XML-RegExp perl-XML-Writer perl-YAML perl-YAML-LibYAML
+perl-YAML-Syck perl-YAML-Tiny perl-common-sense perl-libxml-perl perl-rrdtool perl-version rrdtool

@@ -1,0 +1,54 @@
+#zypper in perl-DBD-MariaDB perl-DBD-mysql perl-DBD-SQLite perl-DBI perl-DBD-MySQL perl-Digest-HMAC perl-YAML
+
+########################################################################################################
+zypper in -y libjansson4-2.14
+
+zypper source-install -d vicibox-*
+
+zypper in -y vicibox-*
+
+zypper ref
+
+zypper up -y
+
+sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+
+reboot 
+
+############################################################
+zypper ref
+
+zypper up -y
+
+cat perl-rpms | xargs zypper in
+
+#cat installed-rpms | xargs zypper in
+
+zypper rm apache2
+
+rm -rf /etc/apache2
+
+zypper rm patterns-server-lamp_server
+
+zypper in patterns-server-lamp_server
+
+a2enmod php7
+
+systemctl disable apache2.service
+
+systemctl enable apache2.service
+
+#vixibox-express #before install
+
+systemctl start apache2.service
+
+systemctl status apache2.service
+
+service apache2 restart
+
+zypper ref 
+zypper up
+
+mysql -uroot asterisk < backup_complete_settings.sql
+mysql -u root -f asterisk < /usr/src/astguiclient/trunk/extras/upgrade_2.14.sql
+/usr/share/astguiclient/ADMIN_update_server_ip.pl --debugX --old-server_ip=
