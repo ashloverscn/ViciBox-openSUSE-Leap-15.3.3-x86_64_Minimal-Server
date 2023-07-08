@@ -12,7 +12,7 @@ systemctl disable firewalld
 systemctl stop firewalld
 #disable ipv6 system-wide 
 cat /etc/sysctl.d/70-yast.conf
-echo "" > /etc/sysctl.conf
+echo "" > /etc/sysctl.d/70-yast.conf
 #if already present then dont add the lines 
 sed -i -e '$a\
 \
