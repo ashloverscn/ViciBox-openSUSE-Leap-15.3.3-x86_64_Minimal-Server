@@ -27,7 +27,7 @@ zypper up -y
 
 #rpm -qa --qf "%{NAME}\n" > installed-pkgs_vicibox10.0.2_stock
 
-cat installed-pkgs_vicibox10.0.2_stock | xargs zypper in
+cat installed-pkgs_vicibox10.0.2_stockoscratch | xargs zypper in
 
 #rm -rf /etc/apache2
 zypper rm -y patterns-server-lamp_server apache2 apache2-mod_php7 apache2-prefork 
