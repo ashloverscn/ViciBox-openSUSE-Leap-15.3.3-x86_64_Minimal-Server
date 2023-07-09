@@ -33,7 +33,7 @@ cat installed-pkgs_vicibox10.0.2_stockoscratch | xargs zypper in
 
 \cp -r ./my.cnf.d/ /etc/ 
 
-#rm -rf /etc/apache2
+rm -rf /etc/apache2
 zypper rm -y patterns-server-lamp_server apache2 apache2-mod_php7 apache2-prefork 
 #vicibox-dynportal
 zypper in -y patterns-server-lamp_server apache2 apache2-mod_php7 apache2-prefork 
