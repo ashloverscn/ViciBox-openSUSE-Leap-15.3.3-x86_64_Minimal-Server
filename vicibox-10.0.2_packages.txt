@@ -33,8 +33,8 @@ cat installed-pkgs_vicibox10.0.2_stockoscratch | xargs zypper in
 
 \cp -r ./my.cnf.d/ /etc/ 
 
-systemctl status apache2.service
-service apache2 restart
+systemctl stop apache2.service
+service apache2 stop
 
 rm -rf /etc/apache2
 zypper rm -y patterns-server-lamp_server apache2 apache2-mod_php7 apache2-prefork 
