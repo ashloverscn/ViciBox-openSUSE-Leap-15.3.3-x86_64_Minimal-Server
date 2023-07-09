@@ -34,7 +34,7 @@ zypper rm patterns-server-lamp_server
 zypper rm apache2
 zypper in apache2
 
-drop database
+mysql -uroot -e "DROP DATABASE IF EXISTS asterisk;"
 
 vicibox-express
 
