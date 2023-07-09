@@ -28,11 +28,15 @@ zypper up -y
 
 cat installed-pkgs_vicibox10.0.2_stock | xargs zypper in
 
-zypper rm apache2
-
 rm -rf /etc/apache2
 
 zypper rm patterns-server-lamp_server
+zypper rm apache2
+zypper in apache2
+
+drop database
+
+vicibox-express
 
 zypper in apache2 apache2-devel apache2-mod_cband apache2-mod_php7 apache2-prefork patterns-server-lamp_server vicibox-dynportal
 
