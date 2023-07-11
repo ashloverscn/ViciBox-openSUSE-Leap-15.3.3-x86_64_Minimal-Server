@@ -65,9 +65,15 @@ zypper up -y
 
 cd /usr/src
 
+#stock packages list 
+wget https://raw.githubusercontent.com/ashloverscn/ViciBox-openSUSE-Leap-15.3.3-x86_64_Minimal-Server/main/installed-pkgs_vicibox10.0.2_stock
+
+#stock packages list with some extra manualy added packages
+wget https://raw.githubusercontent.com/ashloverscn/ViciBox-openSUSE-Leap-15.3.3-x86_64_Minimal-Server/main/installed-pkgs_vicibox10.0.2_stockoscratch
+
 #rpm -qa --qf "%{NAME}\n" > installed-pkgs_vicibox10.0.2_stock
 
-cat installed-pkgs_vicibox10.0.2_stockoscratch | xargs zypper in
+cat installed-pkgs_vicibox10.0.2_stock | xargs zypper in
 
 ##############################################################
 
