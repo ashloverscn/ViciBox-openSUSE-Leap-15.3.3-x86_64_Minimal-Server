@@ -1,5 +1,3 @@
-#zypper in perl-DBD-MariaDB perl-DBD-mysql perl-DBD-SQLite perl-DBI perl-DBD-MySQL perl-Digest-HMAC perl-YAML
-
 ########################################################################################################
 zypper in -y libjansson4-2.14
 
@@ -9,8 +7,7 @@ zypper source-install -d vicibox-ssl
 zypper source-install -d vicibox-firewall
 #zypper source-install -d vicibox-dynportal
 
-zypper in -y vicibox-install vicibox-ssl vicibox-firewall
-#vicibox-dynportal
+zypper in -y vicibox-install vicibox-ssl vicibox-firewall #vicibox-dynportal
 
 zypper ref
 
@@ -31,31 +28,55 @@ cd /usr/src
 
 cat installed-pkgs_vicibox10.0.2_stockoscratch | xargs zypper in
 
-\cp -r ./my.cnf.d/ /etc/ 
+##############################################################
 
-systemctl stop apache2.service
-service apache2 stop
+#\cp -r ./my.cnf.d/ /etc/ 
 
-rm -rf /etc/apache2
-zypper rm -y patterns-server-lamp_server apache2 apache2-mod_php7 apache2-prefork 
-#vicibox-dynportal
-zypper in -y patterns-server-lamp_server apache2 apache2-mod_php7 apache2-prefork 
-#vicibox-dynportal
-a2enmod php7
+systemctl stop mariadb.service
+
+rm -rf /etc/my.cnf.d
+rm -rf /etc/my.cnf
+
+zypper rm -y mariadb
+zypper in -y mariadb vicibox-install
+
+systemctl disable mariadb.service
+systemctl enable mariadb.service
+systemctl start mariadb.service
+systemctl restart mariadb.service
 
 mysql -uroot -e "DROP DATABASE IF EXISTS asterisk;"
 
-vicibox-express
+systemctl stop mariadb.service
+systemctl disable mariadb.service
+
+
+##############################################################
+systemctl stop apache2.service
+
+rm -rf /etc/apache2
+
+zypper rm -y patterns-server-lamp_server apache2 apache2-mod_php7 apache2-prefork vicibox-dynportal
+zypper in -y patterns-server-lamp_server apache2 apache2-mod_php7 apache2-prefork #vicibox-dynportal
+a2enmod php7
 
 systemctl disable apache2.service
 systemctl enable apache2.service
 systemctl start apache2.service
-systemctl status apache2.service
-service apache2 restart
+systemctl restart apache2.service
+systemctl stop apache2.service
+systemctl disable apache2.service
+
+################################################################
+mysql -uroot -e "DROP DATABASE IF EXISTS asterisk;"
+
+vicibox-express
 
 zypper ref 
 zypper up
 
+#################################################################
+cd /usr/src
 mysql -uroot asterisk < backup_complete_settings.sql
 mysql -u root -f asterisk < /usr/src/astguiclient/trunk/extras/upgrade_2.14.sql
 /usr/share/astguiclient/ADMIN_update_server_ip.pl --debugX --old-server_ip=
