@@ -928,9 +928,9 @@ system-user-root
 system-user-wwwrun
 systemd
 systemd-default-settings
-systemd-default-settings-branding-SLE
+#systemd-default-settings-branding-SLE
 systemd-icon-branding-openSUSE
-systemd-presets-branding-MicroOS
+#systemd-presets-branding-MicroOS
 systemd-presets-common-SUSE
 systemd-sysvinit
 sysuser-shadow
@@ -964,7 +964,7 @@ update-alternatives
 usbutils
 util-linux
 util-linux-systemd
-vicibox-dynportal
+#vicibox-dynportal
 vicibox-firewall
 vicibox-install
 vicibox-ssl
@@ -974,7 +974,7 @@ vim-data-common
 virt-what
 vlan
 voicesync
-voicesync-kmp-default
+#voicesync-kmp-default
 vsftpd
 w3m
 wget
@@ -1015,7 +1015,7 @@ yast2-pam
 yast2-perl-bindings
 yast2-pkg-bindings
 yast2-proxy
-yast2-qt-branding-openSUSE
+#yast2-qt-branding-openSUSE
 yast2-ruby-bindings
 yast2-security
 yast2-services-manager
