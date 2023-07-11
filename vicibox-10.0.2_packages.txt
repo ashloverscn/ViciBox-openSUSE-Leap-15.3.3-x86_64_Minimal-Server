@@ -46,6 +46,9 @@ zypper --gpg-auto-import-keys ref
 reboot
 
 ########################################################################################################
+zypper ref
+zypper up -y
+
 zypper in -y libjansson4-2.14
 
 #zypper source-install -d vicibox-*
@@ -56,13 +59,8 @@ zypper source-install -d vicibox-firewall
 
 zypper in -y vicibox-install vicibox-ssl vicibox-firewall #vicibox-dynportal
 
-zypper ref
-
-zypper up -y
-
 ############################################################
 zypper ref
-
 zypper up -y
 
 cd /usr/src
