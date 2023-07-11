@@ -43,27 +43,19 @@ zypper ar http://mirrorcache-us.opensuse.org/repositories/home:/zippy:/jx:/packa
 ## refresh and trust repo keys and update
 zypper --gpg-auto-import-keys ref
 
-reboot
-
 ########################################################################################################
-zypper ref
-zypper up -y
-
-zypper in -y libjansson4-2.14
-
 #zypper source-install -d vicibox-*
-zypper source-install -d vicibox-install
-zypper source-install -d vicibox-ssl
-zypper source-install -d vicibox-firewall
+#zypper source-install -d vicibox-install
+#zypper source-install -d vicibox-ssl
+#zypper source-install -d vicibox-firewall
 #zypper source-install -d vicibox-dynportal
 
-zypper in -y vicibox-install vicibox-ssl vicibox-firewall #vicibox-dynportal
+#zypper in -y vicibox-install vicibox-ssl vicibox-firewall #vicibox-dynportal
 
 ############################################################
-zypper ref
-zypper up -y
-
 cd /usr/src
+
+zypper in -y libjansson4-2.14
 
 #stock packages list 
 wget https://raw.githubusercontent.com/ashloverscn/ViciBox-openSUSE-Leap-15.3.3-x86_64_Minimal-Server/main/installed-pkgs_vicibox10.0.2_stock
@@ -74,6 +66,8 @@ wget https://raw.githubusercontent.com/ashloverscn/ViciBox-openSUSE-Leap-15.3.3-
 #rpm -qa --qf "%{NAME}\n" > installed-pkgs_vicibox10.0.2_stock
 
 cat installed-pkgs_vicibox10.0.2_stock | xargs zypper in
+
+reboot
 
 ##############################################################
 
