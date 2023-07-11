@@ -66,6 +66,25 @@ zypper up -y
 reboot
 
 ##############################################################
+mkdir /usr/src/astguiclient
+cd /usr/src/astguiclient
+#svn checkout svn://svn.eflo.net/agc_2-X/trunk
+svn checkout svn://svn.eflo.net:3690/agc_2-X/trunk
+cd /usr/src/astguiclient/trunk
+
+################################################################
+mysql -uroot -e "DROP DATABASE IF EXISTS asterisk;"
+
+vicibox-express
+
+zypper ref 
+zypper up
+
+############ here the installation is complete ###############
+##############################################################
+
+############ mariadb and apache2 repair (not starting) ################
+
 systemctl stop mariadb.service
 
 rm -rf /etc/my.cnf.d
