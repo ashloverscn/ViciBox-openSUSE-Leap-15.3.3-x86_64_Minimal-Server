@@ -61,6 +61,10 @@ cat installed-pkgs_vicibox10.0.2_stock | xargs zypper in
 reboot
 
 ##############################################################
+zypper ref
+zypper up -y 
+
+##############################################################
 systemctl stop mariadb.service
 
 rm -rf /etc/my.cnf.d
