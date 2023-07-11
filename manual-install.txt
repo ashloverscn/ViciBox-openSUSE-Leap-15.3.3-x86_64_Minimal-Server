@@ -44,15 +44,6 @@ zypper ar http://mirrorcache-us.opensuse.org/repositories/home:/zippy:/jx:/packa
 zypper --gpg-auto-import-keys ref
 
 ########################################################################################################
-#zypper source-install -d vicibox-*
-#zypper source-install -d vicibox-install
-#zypper source-install -d vicibox-ssl
-#zypper source-install -d vicibox-firewall
-#zypper source-install -d vicibox-dynportal
-
-#zypper in -y vicibox-install vicibox-ssl vicibox-firewall #vicibox-dynportal
-
-############################################################
 cd /usr/src
 
 zypper in -y libjansson4-2.14
@@ -70,9 +61,6 @@ cat installed-pkgs_vicibox10.0.2_stock | xargs zypper in
 reboot
 
 ##############################################################
-
-#\cp -r ./my.cnf.d/ /etc/ 
-
 systemctl stop mariadb.service
 
 rm -rf /etc/my.cnf.d
