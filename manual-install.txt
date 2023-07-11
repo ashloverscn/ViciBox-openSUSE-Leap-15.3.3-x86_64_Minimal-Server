@@ -119,7 +119,12 @@ systemctl stop apache2.service
 systemctl disable apache2.service
 
 ################################################################
+systemctl start mariadb.service
+
 mysql -uroot -e "DROP DATABASE IF EXISTS asterisk;"
+
+systemctl stop mariadb.service 
+systemctl stop apache2.service
 
 vicibox-express
 
