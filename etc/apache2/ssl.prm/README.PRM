@@ -1,0 +1,9 @@
+
+ This is the ssl.prm/ directory of Apache/mod_ssl
+ where public DSA Parameter Files for SSL are stored.
+
+ You can view the ingredients of a particular parameter file in plain text
+ by running the command:
+
+   $ openssl dsaparam -noout -text -in <name>.prm
+
