@@ -16,6 +16,8 @@ HOW TO INSTALL : (script automation not complete yet  please use manual-install.
 ## root permission needed
 sudo su
 
+cd /usr/src
+
 wget https://github.com/ashloverscn/ViciBox-openSUSE-Leap-15.3.3-x86_64_Minimal-Server/raw/main/install.sh
 
 chmod +x install.sh
