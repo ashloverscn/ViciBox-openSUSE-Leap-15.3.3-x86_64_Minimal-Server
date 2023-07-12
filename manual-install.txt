@@ -130,4 +130,5 @@ zypper up
 cd /usr/src
 mysql -uroot asterisk < backup_complete_settings.sql
 mysql -u root -f asterisk < /usr/src/astguiclient/trunk/extras/upgrade_2.14.sql
-/usr/share/astguiclient/ADMIN_update_server_ip.pl --debugX --old-server_ip=
+/usr/share/astguiclient/ADMIN_update_server_ip.pl --debugX --old-server_ip=192.168.201.129
+
