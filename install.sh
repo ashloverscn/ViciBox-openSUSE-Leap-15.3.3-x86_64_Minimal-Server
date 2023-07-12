@@ -54,7 +54,3 @@ pwd
 ./part0.system-hw-prepration.sh
 ./part1.add-repo.sh
 
-
-
-
-
