@@ -1,0 +1,12 @@
+#!/bin/bash
+
+SVNDIR="/usr/local/bin/astguiclient"
+
+if ! -d "$SVNDIR" ]; then
+	echo "Making $SVNDIR"
+	mkdir $SVNDIR
+fi
+
+cd $SVNDIR
+echo "Checking out ViciDial SVN..."
+svn checkout svn://svn.eflo.net:3690/agc_2-X/trunk

@@ -1,0 +1,336 @@
+#!/usr/bin/perl
+#
+# vicidial-serverscrub.pl - Scrubs the vicidial database for removed servers
+#
+# Copyright (C) 2012  Matt Florell <vicidial@gmail.com>    LICENSE: AGPLv2
+#
+
+#
+# CHANGES
+
+
+# All my lovely little modules
+use warnings;
+use DBI;
+
+# Globals
+$PATHconf =	"/etc/astguiclient.conf";
+$DEBUG=0;
+$DEBUGX=0;
+$TEST=0;
+$dbuser='cron';
+$dbpass='1234';
+$dbport=3306;
+$dbname='asterisk';
+$dbhost='localhost';
+my $clidbpass=0;
+my $clidbuser=0;
+my $clidbhost=0;
+my $clidbport=0;
+my $clidbname=0;
+my $someinput; # Keep this specific to main since it's my little trash variable
+my $myprompt; # Another trash variable used for user input
+
+print "\n\nViciDial Server Scrub\n\n";
+
+# Parse our run-times, cleaned up from matt-matt code so the rest of us can read it
+$args = "";
+if ( defined $ARGV[0] && length($ARGV[0])>1) {
+	$i=0;
+	while ($#ARGV >= $i) {
+		$args = "$args $ARGV[$i]";
+		$i++;
+	}
+	if ($args =~ /--help/i) {
+		print "allowed run time options:\n";
+		print "  [--dbhost=HOSTNAME] = Manually specify the database hostname or IP to use\n";
+		print "  [--dbname=DBNAME] = Manually specify the database name to use\n";
+		print "  [--dbuser=USERNAME] = Manually specify the database username to use\n";
+		print "  [--dbpass=PASSWORD] = Manually specify the database password to use\n";
+		print "  [--dbport=PORT] = Manually specify the database port to use\n";
+		print "  [--test] = Test Run Only, no commits\n";
+		print "  [--debug] = debug\n";
+		print "  [--debugX] = debug extended\n\n";
+		exit;
+	
+		} else {
+			# Check for debug flag
+			if ($args =~ /--debug/i) {
+				$DEBUG=1;
+				print "\n----- DEBUG Enabled -----\n\n";
+			}
+			
+			# Check for debug extended flag
+			if ($args =~ /--debugX/i) {
+				$DEBUG=1;
+				$DEBUGX=1;
+				print "----- DEBUG Extended Enabled -----\n\n";
+			}
+			
+			# Run a test run without commits, kind of needs at least debug to make sense
+			if ($args =~ /--test/i) {
+				$TEST=1;
+				print "\n----- Test Run Enabled -----\n\n";
+			}
+			
+			
+			# DB Host
+			if ($args =~ /--dbhost=/i) {
+				@CLIlocaldbhostARY = split(/--dbhost=/,$args);
+				@CLIlocaldbhostARX = split(/ /,$CLIlocaldbhostARY[1]);
+				if (length($CLIlocaldbhostARX[0])>2) {
+					$dbhost = $CLIlocaldbhostARX[0];
+					$dbhost =~ s/\/$| |\r|\n|\t//gi;
+					debugoutput(" CLI DB hostname       :      $dbhost",0);
+					$clidbhost=1;
+				}
+			}
+			
+			# DB user
+			if ($args =~ /--dbuser=/i) {
+				@CLIlocaldbuserARY = split(/--dbuser=/,$args);
+				@CLIlocaldbuserARX = split(/ /,$CLIlocaldbuserARY[1]);
+				if (length($CLIlocaldbuserARX[0])>2) {
+					$dbuser = $CLIlocaldbuserARX[0];
+					$dbuser =~ s/\/$| |\r|\n|\t//gi;
+					debugoutput(" CLI DB username       :      $dbuser",0);
+					$clidbuser=1;
+				}
+			}
+			
+			# DB Pass
+			if ($args =~ /--dbpass=/i) {
+				@CLIlocaldbpassARY = split(/--dbpass=/,$args);
+				@CLIlocaldbpassARX = split(/ /,$CLIlocaldbpassARY[1]);
+				if (length($CLIlocaldbpassARX[0])>2) {
+					$dbpass = $CLIlocaldbpassARX[0];
+					$dbpass =~ s/\/$| |\r|\n|\t//gi;
+					debugoutput(" CLI DB password       :      $dbpass",0);
+					$clidbpass=1;
+				}
+			}
+			
+			# DB port
+			if ($args =~ /--dbport=/i) {
+				@CLIlocaldbportARY = split(/--dbport=/,$args);
+				@CLIlocaldbportARX = split(/ /,$CLIlocaldbportARY[1]);
+				if (length($CLIlocaldbportARX[0])>2) {
+					$dbport = $CLIlocaldbportARX[0];
+					$dbport =~ s/\/$| |\r|\n|\t//gi;
+					debugoutput(" CLI DB port           :      $dbport",0);
+					$clidbport=1;
+				}
+			}
+			
+			# DB name
+			if ($args =~ /--dbname=/i) {
+				@CLIlocaldbnameARY = split(/--dbname=/,$args);
+				@CLIlocaldbnameARX = split(/ /,$CLIlocaldbnameARY[1]);
+				if (length($CLIlocaldbnameARX[0])>2) {
+					$dbname = $CLIlocaldbnameARX[0];
+					$dbname =~ s/\/$| |\r|\n|\t//gi;
+					debugoutput(" CLI DB name           :      $dbname",0);
+					$clidbname=1;
+				}
+			}
+	}
+}
+
+# Parse the config file if it's present, command line args get precedence
+if ( -e $PATHconf ) {
+	open(CONF, "$PATHconf");
+	@conf = <CONF>; 
+	close(CONF);
+	$i=0;
+	foreach(@conf)
+		{
+		$line = $conf[$i];
+		$line =~ s/ |>|\n|\r|\t|\#.*|;.*//gi;
+		if ( ($line =~ /^VARDB_server/) && ($clidbhost < 1) )
+			{$dbhost = $line;   $dbhost =~ s/.*=//gi;}
+		if ( ($line =~ /^VARDB_user/) && ($clidbuser < 1) )
+			{$dbuser = $line;   $dbuser =~ s/.*=//gi;}
+		if ( ($line =~ /^VARDB_pass/) && ($clidbpass < 1) )
+			{$dbpass = $line;   $dbpass =~ s/.*=//gi;}
+		if ( ($line =~ /^VARDB_port/) && ($clidbport < 1) )
+			{$dbport = $line;   $dbport =~ s/.*=//gi;}
+		if ( ($line =~ /^VARDB_database/) && ($clidbname < 1) )
+			{$dbname = $line;   $dbname =~ s/.*=//gi;}
+		$i++;
+	}
+}
+
+# Give run-time output if we don't have a CLI entered value here
+if ($clidbhost==0) { print " ViciDial DB hostname :      $dbhost\n"; }
+if ($clidbuser==0) { print " ViciDial DB username :      $dbuser\n"; }
+if ($clidbpass==0) { print " ViciDial DB password :      $dbpass\n"; }
+if ($clidbport==0) { print " ViciDial DB port     :      $dbport\n"; }
+if ($clidbname==0) { print " ViciDial DB name     :      $dbname\n"; }
+print "\n";
+
+sub debugoutput {
+	# I got tired of repeating this code snippet, so this gives debug output, with optional critical die
+	my $debugline = shift;
+	my $debugdie = 0;
+	$debugdie = shift;
+	if ($DEBUG==1 and $debugdie==0) {
+		# We are just giving output, nothing more
+		print "$debugline\n";
+		} elsif ($DEBUG==1 and $debugdie==1) {
+			# Evidently it was a critical error, so we die on output
+			die("$debugline\n");
+	}
+}
+
+sub debugxoutput {
+	# I got tired of repeating this code snippet, so this gives debug output, with optional critical die
+	my $debugline = shift;
+	my $debugdie = 0;
+	$debugdie = shift;
+	if ($DEBUGX==1 and $debugdie==0) {
+		# We are just giving output, nothing more
+		print "$debugline\n";
+		} elsif ($DEBUGX==1 and $debugdie==1) {
+			# Evidently it was a critical error, so we die on output
+			die("$debugline\n");
+	}
+}
+
+# Connect to vicidial database
+$dbhVD = DBI->connect("DBI:mysql:$dbname:$dbhost:$dbport", "$dbuser", "$dbpass") or die "Couldn't connect to database: " . DBI->errstr;
+
+# Get list of servers in the cluster
+$stmtSRVcheck = "select server_ip from servers;";
+$sthSRVcheck = $dbhVD->prepare($stmtSRVcheck) or die "Preparing stmtSRVcheck: ",$dbhVD->errstr;
+$sthSRVcheck->execute or die "Executing sthSRVcheck: ",$dbhVD->errstr;
+$i=0;
+while (@arySRVCheck=$sthSRVcheck->fetchrow_array()) {
+	print "Found server $arySRVCheck[0];\n";
+	if ($i==0) { $serverSQLstring="('$arySRVCheck[0]'"; } else { $serverSQLstring=$serverSQLstring . ",'$arySRVCheck[0]'"; }
+	$i++;
+}
+print "--Found $i valid servers\n";
+$sthSRVcheck->finish;
+$serverSQLstring=$serverSQLstring . ", '0.0.0.0')";
+debugoutput("Server String: $serverSQLstring",0);
+
+# wipe out conferences that aren't in our server list
+$stmtCONFdelete = "delete from conferences where server_ip not in $serverSQLstring;";
+debugxoutput("Conference delete SQL: $stmtCONFdelete",0);
+if ($TEST==0) {
+	$sthCONFdelete = $dbhVD->prepare($stmtCONFdelete) or die "Preparing stmtCONFdelete: ",$dbhVD->errstr;
+	$sthCONFdelete->execute or die "Executing sthCONFdelete: ",$dbhVD->errstr;
+	print "\nDeleted " . $sthCONFdelete->rows . " conference entries\n";
+	$sthCONFdelete->finish;
+}
+
+# wipe out vicidial conferences too
+$stmtVDCONFdelete = "delete from vicidial_conferences where server_ip not in $serverSQLstring;";
+debugxoutput("VD Conference delete SQL: $stmtVDCONFdelete",0);
+if ($TEST==0) {
+	$sthVDCONFdelete = $dbhVD->prepare($stmtVDCONFdelete) or die "Preparing stmtVDCONFdelete: ",$dbhVD->errstr;
+	$sthVDCONFdelete->execute or die "Executing sthVDCONFdelete: ",$dbhVD->errstr;
+	print "Deleted " . $sthVDCONFdelete->rows . " ViciDial conference entries\n";
+	$sthVDCONFdelete->finish;
+}
+
+# Clear remote agent entries without a server
+$stmtREMOTEdelete = "delete from vicidial_remote_agents where server_ip not in $serverSQLstring;";
+debugxoutput("Remove Agent delete SQL: $stmtREMOTEdelete",0);
+if ($TEST==0) {
+	$sthREMOTEdelete = $dbhVD->prepare($stmtREMOTEdelete) or die "Preparing stmtREMOTEdelete: ",$dbhVD->errstr;
+	$sthREMOTEdelete->execute or die "Executing sthREMOTEdelete: ",$dbhVD->errstr;
+	print "Deleted " . $sthREMOTEdelete->rows . " remote agent entries\n";
+	$sthREMOTEdelete->finish;
+}
+
+# Clear carrier entries without a server
+$stmtCARRIERdelete = "delete from vicidial_server_carriers where server_ip not in $serverSQLstring;";
+debugxoutput("Carrier delete SQL: $stmtCARRIERdelete",0);
+if ($TEST==0) {
+	$sthCARRIERdelete = $dbhVD->prepare($stmtCARRIERdelete) or die "Preparing stmtCARRIERdelete: ",$dbhVD->errstr;
+	$sthCARRIERdelete->execute or die "Executing sthCARRIERdelete: ",$dbhVD->errstr;
+	print "Deleted " . $sthCARRIERdelete->rows . " carrier entries\n";
+	$sthCARRIERdelete->finish;
+}
+
+# Clear phone entries without a server
+$stmtPHONEdelete = "delete from phones where server_ip not in $serverSQLstring;";
+debugxoutput("Phone delete SQL: $stmtPHONEdelete",0);
+if ($TEST==0) {
+	$sthPHONEdelete = $dbhVD->prepare($stmtPHONEdelete) or die "Preparing stmtPHONEdelete: ",$dbhVD->errstr;
+	$sthPHONEdelete->execute or die "Executing sthPHONEdelete: ",$dbhVD->errstr;
+	print "Deleted " . $sthPHONEdelete->rows . " phone entries\n";
+	$sthPHONEdelete->finish;
+}
+
+# Create a hash of all valid phone entries
+$stmtPHONEactive = "select distinct login from phones;";
+$sthPHONEactive = $dbhVD->prepare($stmtPHONEactive) or die "Preparing stmtPHONEactive: ",$dbhVD->errstr;
+$sthPHONEactive->execute or die "Executing sthPHONEactive: ",$dbhVD->errstr;
+while (@aryPHONEactive=$sthPHONEactive->fetchrow_array()) { $hshPHONEactive{$aryPHONEactive[0]}=1; }
+print "-- Found " . $sthPHONEactive->rows . " active phones to check against aliases\n";
+$sthPHONEactive->finish;
+
+# Get the list of phone alises and process them
+$stmtALIASlist = "select alias_id, logins_list from phones_alias;";
+$sthALIASlist = $dbhVD->prepare($stmtALIASlist) or die "Preparing stmtALIASlist: ",$dbhVD->errstr;
+$sthALIASlist->execute or die "Executing sthALIASlist: ",$dbhVD->errstr;
+print "-- Found " . $sthALIASlist->rows . " phone aliases to process\n";
+# Loop through each alias and see if it is valid or needs adjusting
+while (@aryALIASlist=$sthALIASlist->fetchrow_array()) {
+	$alias_id=$aryALIASlist[0];
+	$orig_logins_list=$aryALIASlist[1];
+	$new_logins_list='';
+	$alias_update=0; # Flag to update alias, assuming it is valid
+	$alias_valid=0; # If not set to 1 then alias contains no valid phone entries, so delete
+		
+	# Split the logins for the alias into individual phones and check against the phone hash
+	@aryLOGINlist=split(',',$orig_logins_list);
+	$numLOGINlist=@aryLOGINlist;
+	$numLOGINlist--;
+	debugoutput("------Number of logins for alias ID $alias_id - $numLOGINlist",0);
+	$j=0;
+	for my $i (0 .. $numLOGINlist) {
+		$tmpPHONE = $aryLOGINlist[$i];
+		if (exists $hshPHONEactive{$tmpPHONE}) {
+			# Found the phone entry, add it to the new login list
+			$alias_valid=1;
+			if ($j==0) { $new_logins_list="$aryLOGINlist[$i]"; $j++; } else { $new_logins_list.=",$aryLOGINlist[$i]"; $j++; }
+		}
+	}
+	
+	# Give output for what just happened, and check flags for update
+	if ($alias_valid==1) {
+		if (length($orig_logins_list) == length($new_logins_list)) {
+			print "----Alias ID $alias_id processed, No update needed - $new_logins_list\n";
+			
+			} else {
+				print "----Alias ID $alias_id processed, update needed - $new_logins_list\n";
+				$alias_update=1;
+		}
+	}
+	
+	# generate any relevant SQL if needed
+	if ($alias_valid==1 && $alias_update==1) {
+		# Update the DB
+		$stmtALIASupd = "update phones_alias set logins_list='$new_logins_list' where alias_id='$alias_id';";
+		debugoutput("Alias update SQL: $stmtALIASupd",0);
+		if ($TEST==0) {
+			$sthALIASupd = $dbhVD->prepare($stmtALIASupd) or die "Preparing stmtALIASupd: ",$dbhVD->errstr;
+			$sthALIASupd->execute or die "Executing sthALIASupd: ",$dbhVD->errstr;
+			$sthALIASupd->finish;
+		}
+		} elsif ($alias_valid==0) {
+			# It's a non-valid alias, so delete it
+			$stmtALIASdel = "delete from phones_alias where alias_id='$alias_id';";
+			debugoutput("Alias delete SQL: $stmtALIASdel",0);
+			if ($TEST==0) {
+				$sthALIASdel = $dbhVD->prepare($stmtALIASdel) or die "Preparing stmtALIASdel: ",$dbhVD->errstr;
+				$sthALIASdel->execute or die "Executing sthALIASdel: ",$dbhVD->errstr;
+				$sthALIASdel->finish;
+			}
+	}
+	
+	
+}

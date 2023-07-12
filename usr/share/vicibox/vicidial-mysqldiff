@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo 
+echo "ViciDial database comparison using mysqldiff"
+echo "Does not prompt for password, set those in /root/.my.cnf"
+echo
+
+cd /usr/src/astguiclient/trunk/extras
+/usr/bin/mysql --user=root --host=localhost --execute="drop database if exists mysqldiff;"
+/usr/bin/mysql --user=root --host=localhost --execute="create database mysqldiff default character set utf8 collate utf8_unicode_ci;"
+/usr/bin/mysql mysqldiff < /usr/src/astguiclient/trunk/extras/MySQL_AST_CREATE_tables.sql
+mysqldiff --host1=localhost --user1=root --host2=localhost --user2=root  asterisk mysqldiff > /root/mysqldiff.sql
+
+echo "SQL diff file located at /root/mysqldiff.sql"
+echo

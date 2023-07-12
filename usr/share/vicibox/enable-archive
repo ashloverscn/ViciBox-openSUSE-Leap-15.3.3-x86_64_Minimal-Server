@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd /tmp
+crontab -l > rootcron
+sed "s/#2,5,8,11/2,5,8,11/" rootcron > rootcron.new
+crontab rootcron.new

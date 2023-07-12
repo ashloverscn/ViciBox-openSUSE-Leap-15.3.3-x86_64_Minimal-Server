@@ -1,0 +1,48 @@
+
+### remove and rotate old asterisk logs
+29 0 * * * /usr/bin/find /var/log/asterisk -maxdepth 3 -type f -mtime +30 -print | xargs rm -f
+30 0 * * * /usr/bin/find / -maxdepth 1 -name "screenlog.0*" -mtime +7 -print | xargs rm -f
+31 0 * * * /usr/bin/find /tmp -maxdepth 1 -type f -mtime +7 -print | xargs rm -f
+32 0 * * * /usr/bin/find /var/log/asterisk -maxdepth 1 -type f -mtime +1 -print | grep -v \.xz | xargs xz >/dev/null 2>&1
+
+### recording mixing/compressing/ftping scripts
+#0,3,6,9,12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57 * * * * /usr/share/astguiclient/AST_CRON_audio_1_move_mix.pl
+0,3,6,9,12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57 * * * * /usr/share/astguiclient/AST_CRON_audio_1_move_mix.pl --MIX
+0,3,6,9,12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57 * * * * /usr/share/astguiclient/AST_CRON_audio_1_move_VDonly.pl
+1,4,7,10,13,16,19,22,25,28,31,34,37,40,43,46,49,52,55,58 * * * * /usr/share/astguiclient/AST_CRON_audio_2_compress.pl --MP3
+#2,5,8,11,14,17,20,23,26,29,32,35,38,41,44,47,50,53,56,59 * * * * /usr/share/astguiclient/AST_CRON_audio_3_ftp.pl --MP3 --run-check
+#0 1 * * * /usr/share/astguiclient/AST_CRON_audio_4_ftp2.pl --ftp-server=server.ip --ftp-login=user --ftp-pass=pass --ftp-directory=/ --ftp-persistent --ftp-validate --transfer-limit=100000 --list-limit=100000
+
+### remove old recordings more than 7 days old, and delete originals after 1 day
+#24 0 * * * /usr/bin/find /var/spool/asterisk/monitorDONE -maxdepth 2 -type f -mtime +7 -print | xargs rm -f
+24 1 * * * /usr/bin/find /var/spool/asterisk/monitorDONE/ORIG -maxdepth 2 -type f -mtime +1 -print | xargs rm -f
+
+### kill Hangup script for Asterisk updaters
+* * * * * /usr/share/astguiclient/AST_manager_kill_hung_congested.pl
+
+### updater for voicemail
+* * * * * /usr/share/astguiclient/AST_vm_update.pl
+
+### updater for conference validator
+* * * * * /usr/share/astguiclient/AST_conf_update.pl
+
+### reset several temporary-info tables in the database
+2 1 * * * /usr/share/astguiclient/AST_reset_mysql_vars.pl
+
+### Reboot nightly to manage asterisk issues and memory leaks - uncomment if issues arise
+#30 6 * * * /sbin/reboot
+
+### remove text to speech file more than 4 days old
+#20 0 * * * /usr/bin/find /var/lib/asterisk/sounds/tts/ -maxdepth 2 -type f -mtime +4 -print | xargs rm -f
+
+### Update agent records with the IP of the phone they are logging in on
+#*/5 * * * * /usr/share/astguiclient/AST_phone_update.pl --agent-lookup
+
+### Delete voicemail that is older then 60 days
+#0 2 * * * /usr/local/bin/vmspool_manager.pl --active --age=60
+
+### ViciBox integrated firewall, by default just load the VoIP Black list and reload it every 4 hours
+### You can lock everyone out of your server if you set this wrong, so understand what you are doing!!!
+@reboot /usr/bin/VB-firewall --voipbl --noblack --quiet
+0 */6 * * * /usr/bin/VB-firewall --voipbl --noblack --flush --quiet
+

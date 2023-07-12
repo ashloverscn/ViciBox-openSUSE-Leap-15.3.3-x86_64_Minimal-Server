@@ -1,0 +1,7 @@
+
+### keepalive script for astguiclient processes
+* * * * * /usr/share/astguiclient/ADMIN_keepalive_ALL.pl
+
+### Compress astguiclient log files and remove old ones
+25 2 * * * /usr/bin/find /var/log/astguiclient -maxdepth 1 -type f -mtime +1 -print | grep -v \.xz | xargs xz -9 >/dev/null 2>&1
+28 0 * * * /usr/bin/find /var/log/astguiclient -maxdepth 1 -type f -mtime +30 -print | xargs rm -f
