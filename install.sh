@@ -53,16 +53,6 @@ pwd
 ###########################################################################################################
 ./part0.system-hw-prepration.sh
 ./part1.add-repo.sh
-#./part1.update-install-kernel-sources-epl-release-compiler-tools.sh
-#./part2.install-and-configure-php-mariadb-apache.sh
-#./part3.install-perl-cpan-cpanm-modules.sh
-#./part7.install-vicidial-src-from-svn-repo.sh
-#./part10.install-vicidial-asterisk-default-sounds.sh
-
-
-
-
-
 
 
 
