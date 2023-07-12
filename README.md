@@ -1,7 +1,7 @@
 # ViciBox-openSUSE-Leap-15.3.3-x86_64_Minimal-Server
 
 # Install VirtualBox and VirtualBox-Addons and grab 
-# my scratch installation virtual machine from here:
+# my scratch installation virtual machine from here: (uploading soon)
 
 
 FOR ANY HELP CONTACT 
