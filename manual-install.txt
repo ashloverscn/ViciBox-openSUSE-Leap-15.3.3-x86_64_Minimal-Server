@@ -112,11 +112,6 @@ zypper rm -y patterns-server-lamp_server apache2 apache2-mod_php7 apache2-prefor
 zypper in -y patterns-server-lamp_server apache2 apache2-mod_php7 apache2-prefork #vicibox-dynportal
 a2enmod php7
 
-mv /etc/apache2/vhosts.d/1111-default-ssl.conf /etc/apache2/vhosts.d/1111-default-ssl.conf.bak
-mv /etc/apache2/vhosts.d/1111-default.conf /etc/apache2/vhosts.d/1111-default.conf.bak
-\cp -r /usr/src/etc/apache2/vhosts.d/1111-default-ssl.conf /etc/apache2/vhosts.d/1111-default-ssl.conf
-\cp -r /usr/src/etc/apache2/vhosts.d/1111-default.conf /etc/apache2/vhosts.d/1111-default.conf
-
 systemctl disable apache2.service
 systemctl enable apache2.service
 systemctl start apache2.service
@@ -133,6 +128,11 @@ cd /usr/share/astguiclient/
 sed -i 's/wgetbin -q/wgetbin --no-check-certificate -q/g' ADMIN_audio_store_sync.pl
 
 #configure ssl certificate path and state
+mv /etc/apache2/vhosts.d/1111-default-ssl.conf /etc/apache2/vhosts.d/1111-default-ssl.conf.bak
+mv /etc/apache2/vhosts.d/1111-default.conf /etc/apache2/vhosts.d/1111-default.conf.bak
+\cp -r /usr/src/etc/apache2/vhosts.d/1111-default-ssl.conf /etc/apache2/vhosts.d/1111-default-ssl.conf
+\cp -r /usr/src/etc/apache2/vhosts.d/1111-default.conf /etc/apache2/vhosts.d/1111-default.conf
+
 nano /etc/apache2/vhosts.d/1111-default-ssl.conf
 
 SSLEngine on
