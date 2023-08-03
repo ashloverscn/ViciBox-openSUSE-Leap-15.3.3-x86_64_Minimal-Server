@@ -118,6 +118,9 @@ systemctl restart apache2.service
 systemctl stop apache2.service
 systemctl disable apache2.service
 
+sed -i 's/#Listen 80/Listen 80/g' /etc/apache2/listen.conf
+sed -i 's/#Listen 443/Listen 443/g' /etc/apache2/listen.conf
+
 ################################################################
 mysql -uroot -e "DROP DATABASE IF EXISTS asterisk;"
 
