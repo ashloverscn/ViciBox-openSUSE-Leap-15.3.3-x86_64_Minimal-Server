@@ -118,9 +118,31 @@ systemctl restart apache2.service
 systemctl stop apache2.service
 systemctl disable apache2.service
 
+##############################################################
+#enable ssl and self-signed certificates
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl.key/vicibox.key -out /etc/apache2/ssl.crt/vicibox.crt
+
+#allow asterisk to to update audio store with self-signed certificate
+cd /usr/share/astguiclient/
+sed -i 's/wgetbin -q/wgetbin --no-check-certificate -q/g' ADMIN_audio_store_sync.pl
+
+#configure ssl certificate path and state
+nano /etc/apache2/vhosts.d/1111-default-ssl.conf
+
+SSLEngine on
+SSLCertificateFile /etc/apache2/ssl.crt/vicibox.crt
+SSLCertificateKeyFile /etc/apache2/ssl.key/vicibox.key
+
+#configure ssl redirect path and port
+nano /etc/apache2/vhosts.d/1111-default.conf
+
+DocumentRoot /srv/www/htdocs
+Redirect permanent / https://164.132.124.180/
+
 sed -i 's/#Listen 80/Listen 80/g' /etc/apache2/listen.conf
 sed -i 's/#Listen 443/Listen 443/g' /etc/apache2/listen.conf
 
+service apache2 restart
 
 ################################################################
 mysql -uroot -e "DROP DATABASE IF EXISTS asterisk;"
