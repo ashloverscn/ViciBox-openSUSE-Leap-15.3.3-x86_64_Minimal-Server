@@ -111,8 +111,10 @@ zypper rm -y patterns-server-lamp_server apache2 apache2-mod_php7 apache2-prefor
 zypper in -y patterns-server-lamp_server apache2 apache2-mod_php7 apache2-prefork #vicibox-dynportal
 a2enmod php7
 
-\cp -r /usr/src/etc/apache2/vhosts.d/1111-default-ssl.conf /etc/apache2/vhosts.d/
-\cp -r /usr/src/etc/apache2/vhosts.d/1111-default.conf /etc/apache2/vhosts.d/
+mv /etc/apache2/vhosts.d/1111-default-ssl.conf /etc/apache2/vhosts.d/1111-default-ssl.conf.bak
+mv /etc/apache2/vhosts.d/1111-default.conf /etc/apache2/vhosts.d/1111-default.conf.bak
+\cp -r /usr/src/etc/apache2/vhosts.d/1111-default-ssl.conf /etc/apache2/vhosts.d/1111-default-ssl.conf
+\cp -r /usr/src/etc/apache2/vhosts.d/1111-default.conf /etc/apache2/vhosts.d/1111-default.conf
 
 systemctl disable apache2.service
 systemctl enable apache2.service
