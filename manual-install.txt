@@ -67,6 +67,10 @@ zypper up -y
 reboot
 
 ##############################################################
+#generate ssl self-signed certificates
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl.key/vicibox.key -out /etc/apache2/ssl.crt/vicibox.crt
+
+##############################################################
 mkdir /usr/src/astguiclient
 cd /usr/src/astguiclient
 #svn checkout svn://svn.eflo.net/agc_2-X/trunk
@@ -120,9 +124,6 @@ systemctl stop apache2.service
 systemctl disable apache2.service
 
 ##############################################################
-#enable ssl and self-signed certificates
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl.key/vicibox.key -out /etc/apache2/ssl.crt/vicibox.crt
-
 #allow asterisk to to update audio store with self-signed certificate
 cd /usr/share/astguiclient/
 sed -i 's/wgetbin -q/wgetbin --no-check-certificate -q/g' ADMIN_audio_store_sync.pl
