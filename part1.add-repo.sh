@@ -25,5 +25,3 @@ zypper ar -aegfk http://mirrorcache-us.opensuse.org/repositories/home:/zippy:/jx
 zypper --gpg-auto-import-keys ref
 #zypper up -y
 #reboot
-
-
